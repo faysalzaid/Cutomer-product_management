@@ -1,0 +1,18 @@
+
+ <div id="left-column">
+      <h3>More Info</h3>
+      <ul class="nav">
+        <li><a href="#">Customers({{customer_count}})</a></li>
+        <li><a href="#">Orders({{order_count}})</a></li>
+        <li><a href="#">Products({{product_count}})</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+         <li class="last"><a href="#">Hello {{request.user.username}}</a></li>
+        {% else %}
+        <li><a href="{% url 'login'%}">Login</a></li>
+        <li><a href="{% url 'register'%}">Register</a></li>
+        {% endif %}
+       
+      </ul>
+      <a href="#" class="link">Link here</a> <a href="#" class="link">Link here</a> 
+      </div>

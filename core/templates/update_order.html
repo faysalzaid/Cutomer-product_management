@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+  <div id="middle">
+    <div id="left-column">
+      <h3>More Info</h3>
+      <ul class="nav">
+        <li><a href="#">Customers({{customer_count}})</a></li>
+        <li><a href="#">Orders({{order_count}})</a></li>
+        <li><a href="#">Products({{product_count}})</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="#">Logout</a></li>
+         <li class="last"><a href="#">Hello {{request.user.username}}</a></li>
+        {% else %}
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+        {% endif %}
+       
+      </ul>
+      <a href="#" class="link">Link here</a> <a href="#" class="link">Link here</a> </div>
+    <div id="center-column">
+      <div class="top-bar"> <a href="/" class="button">Go back </a>
+        <h1>{{title}}</h1>
+        <div class="breadcrumbs"><a href="#">{{title}}</a> / <a href="#">Contents</a></div>
+      </div>
+      <br />
+      <div class="select-bar">
+        <label>
+        <input type="text" name="textfield" />
+        </label>
+        <label>
+        <input type="submit" name="Submit" value="Search" />
+        </label>
+      </div>
+
+
+
+
+
+      <div class="table"> <img src="img/bg-th-left.gif" width="8" height="7" alt="" class="left" /> <img src="img/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+        <table class="listing form" cellpadding="0" cellspacing="0">
+          <tr>
+            <th class="full" colspan="2">Update {{title}}</th>
+          </tr>
+
+          <form method='POST'>{% csrf_token %}
+          <tr>
+            <td class="first" width="172"><strong>{{form.customer.label}}</strong></td>
+            <td class="last">{{form.customer}}</td>
+          </tr>
+          <tr class="bg">
+            <td class="first"><strong class='text'>{{form.product.label}}</strong></td>
+            <td class="last">{{form.product}}</td>
+          </tr>
+          <tr>
+            <td class="first"><strong>{{form.status.label}}</strong></td>
+            <td class="last">{{form.status}}</td>
+          </tr>
+          <tr class="bg">
+            <td class="first"><button class='btn btn-sm btn-primary'>Submit</button></td>
+          </tr>
+          </form>
+          
+        </table>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+
+    
+            {% endblock content %} 

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+  <div id="middle">
+    <div id="left-column">
+      <h3>More Info</h3>
+      <ul class="nav">
+        <li><a href="#">Customers({{customer_count}})</a></li>
+        <li><a href="#">Orders({{order_count}})</a></li>
+        <li><a href="#">Products({{product_count}})</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="#">Logout</a></li>
+         <li class="last"><a href="#">Hello {{request.user.username}}</a></li>
+        {% else %}
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+        {% endif %}
+       
+      </ul>
+      <a href="#" class="link">Link here</a> <a href="#" class="link">Link here</a> </div>
+    <div id="center-column">
+      <div class="top-bar"> <a href="/" class="button">Go back</a>
+        <h1>{{title}}</h1>
+        <div class="breadcrumbs"><a href="#">{{title}}</a> / <a href="#">Contents</a></div>
+      </div>
+      <br />
+      <div class="select-bar">
+        <label>
+        <input type="text" name="textfield" />
+        </label>
+        <label>
+        <input type="submit" name="Submit" value="Search" />
+        </label>
+      </div>
+      <div class="table"> <img src="img/bg-th-left.gif" width="8" height="7" alt="" class="left" /> <img src="img/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+        <table class="listing" cellpadding="0" cellspacing="0">
+          <tr>
+            <th class="first" width="177">Customer Name</th>
+            <th>Product</th>
+            <th>Date Created</th>
+            <th>Status</th>
+            <th>Delete</th>
+          </tr>
+    
+          <tr>
+            <td class="first style2">{{order.customer.name}} </td>
+            <td>{{order.product.name}}</td>
+            <td>{{order.date_created|date:"M d,Y,H:i"}}</td>
+             <td>{{order.status}}</td>
+            <td><img src=" {% static 'img/hr.gif' %}" width="16" height="16" alt="" /></td>
+          </tr>
+      
+
+        </table>
+        <div class="select"> <strong>Other Pages: </strong>
+          <select>
+            <option>1</option>
+          </select>
+        </div>
+      </div>
+      {% if request.user.is_superuser %}
+      <form method='POST'>{% csrf_token %}
+      <button  class="button">Are you sure you want to delete this</button>
+      </form>
+      {% else %}
+      <button  class="button">You are not allowed to delete this one</button>
+      {% endif %}
+
+
+
+
+    </div>
+
+    
+            {% endblock content %} 
