@@ -4,7 +4,7 @@ from .models import *
 from django.forms import inlineformset_factory
 # Create your views here.
 from .filters import *
-from .forms import UserRegisterForm,OrderForm
+from .forms import *
 
 from django.contrib import messages
 from django.contrib.auth import login,authenticate,logout
@@ -176,5 +176,25 @@ def LogoutUser(request):
 
 
 def UserPage(request):
-    context={}
+    orders = request.user.customer.order_set.all()
+    context={'orders':orders}
     return render(request,'user.html',context)
+
+
+def Order_single_view(request,slug):
+    order = Order.objects.get(slug=slug)
+    context={'order':order}
+    return render(request,'order_single.html',context)
+
+
+
+def UserSettings(request):
+    user = request.user.customer
+    form = CustomerForm(instance=user)
+    if request.method=='POST':
+        form = CustomerForm(request.POST,request.FILES,instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('settings')
+    context ={'form':form}
+    return render(request,'settings.html',context)

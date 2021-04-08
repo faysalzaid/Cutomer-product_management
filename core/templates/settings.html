@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<head>
+    {{ form.media }}
+</head>
+  <div id="middle">
+    
+ <div id="left-column">
+      <h3>Profile Info</h3>
+      <ul class="nav">
+        <a href="{{request.user.customer.profile_pic.url}}"><img src="{{request.user.customer.profile_pic.url}}" style='width:70%;margin-top:30px;'></a>
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+         <li class="last"><a href="#">Hello {{request.user.username}}</a></li>
+        {% else %}
+        <li><a href="{% url 'login'%}">Login</a></li>
+        <li><a href="{% url 'register'%}">Register</a></li>
+        {% endif %}
+       
+      </ul>
+      <a href="#" class="link">Link here</a> <a href="#" class="link">Link here</a> 
+      </div>
+
+    <div id="center-column">
+      <div class="top-bar"> <a href="/" class="button">Go back </a>
+        <h1>{{title}}</h1>
+        <div class="breadcrumbs"><a href="#">{{title}}</a> / <a href="#">Contents</a></div>
+      </div>
+      <br />
+      <div class="select-bar">
+        <label>
+        <input type="text" name="textfield" />
+        </label>
+        <label>
+        <input type="submit" name="Submit" value="Search" />
+        </label>
+      </div>
+
+
+
+
+
+      <div class="table"> <img src="img/bg-th-left.gif" width="8" height="7" alt="" class="left" /> <img src="img/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+        <table class="listing form" cellpadding="0" cellspacing="0">
+          <tr>
+            <th class="full" colspan="2">ADD {{title}}</th>
+          </tr>
+          <form method='POST' enctype="multipart/form-data">{% csrf_token %}
+
+
+          <tr class="bg">
+            <td class="first"><strong>{{form.label}}</strong></td>
+            <td class="last">{{form}}</td>
+          </tr>
+   
+          <tr class="bg">
+            <td class="first"><button class='btn btn-sm btn-primary'>Submit</button></td>
+          </tr>
+         
+          </form>
+          
+        </table>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+
+    
+            {% endblock content %} 

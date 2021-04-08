@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.contrib.auth.models import User
 # Create your models here.
+from django_quill.fields import QuillField
 
 
 class Customer(models.Model):
@@ -10,8 +11,10 @@ class Customer(models.Model):
     name = models.CharField(max_length=100,null=True,blank=True)
     slug = models.SlugField(blank=True,null=True,unique=True)
     phone = models.CharField(max_length=100,null=True,blank=True)
+    profile_pic = models.ImageField(max_length=200,null=True)
     email = models.CharField(max_length=100,null=True,blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
+    my_bio = QuillField()
 
 
     def __str__(self):

@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
-    'django_filters'
+    'core.apps.CoreConfig',
+    'django_filters',
+    'django_quill',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'core/static')]
+
+MEDIA_URL='/media/'
+# MEDIA_URL='/images/'
+MEDIA_ROOT= os.path.join(BASE_DIR,'static/img')
+
+
+
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER ='zaidnajim111@gmail.com'
+EMAIL_HOST_PASSWORD='fayo12345as'
+
+
+

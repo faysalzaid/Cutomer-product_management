@@ -28,20 +28,18 @@
       <div class="table"> <img src="img/bg-th-left.gif" width="8" height="7" alt="" class="left" /> <img src="img/bg-th-right.gif" width="7" height="7" alt="" class="right" />
         <table class="listing" cellpadding="0" cellspacing="0">
           <tr>
-            <th class="first" width="177">Customer Name</th>
-            <th>Phone</th>
-            <th>Email</th>
+            <th>Product</th>
+            <th>Date Created</th>
+            <th>status</th>
             <th>Edit</th>
-            <th>View</th>
             <th>Delete</th>
           </tr>
-          {% for customer in customers %}
+          {% for customer in orders %}
           <tr>
-            <td class="first style2">{{customer.name}} </td>
-            <td>{{customer.phone}}</td>
-            <td>{{customer.email}}</td>
+            <td class="first style2">{{customer.product}} </td>
+            <td>{{customer.date_created}}</td>
+            <td>{{customer.status}}</td>
              <td><img src=" {% static 'img/edit-icon.gif' %}" width="16" height="16" alt="save" /></td>
-            <td><a href="{% url 'customer_detail' customer.slug %}"><img src=" {% static 'img/save-icon.gif' %}" width="16" height="16" alt="save" /></a></td>
             <td><img src=" {% static 'img/hr.gif' %}" width="16" height="16" alt="" /></td>
           </tr>
           {% endfor %}

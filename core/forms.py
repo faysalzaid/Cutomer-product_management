@@ -1,5 +1,5 @@
 from django.forms import ModelForm 
-from .models import Order
+from .models import *
 from django import forms
 
 from django.contrib.auth.models import User 
@@ -12,6 +12,15 @@ class OrderForm(ModelForm):
         fields = "__all__"
 
 
+
+
+class CustomerForm(ModelForm):
+    class Meta:
+        model = Customer
+        fields='__all__'
+        exclude =['user']
+
+        
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     class Meta:
